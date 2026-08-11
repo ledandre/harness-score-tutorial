@@ -1,0 +1,26 @@
+﻿
+> meeting-cost-cli@1.0.0 check
+> npm run lint && npm run typecheck && npm test
+
+
+> meeting-cost-cli@1.0.0 lint
+> biome lint .
+
+wsl.exe : /home/leandro/workspace/harness-score-tutorial/node_modules/@biomejs/biome/bin/biome:41
+No C:\Users\ledan\AppData\Local\Temp\ps-script-e844ffce-c810-4728-93a7-f79ab4a11396.ps1:109 caractere:1
++ wsl.exe -d Ubuntu --cd /home/leandro/workspace/harness-score-tutorial ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (/home/leandro/w...me/bin/biome:41:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+		? PLATFORMS?.["linux-musl"]?.[arch]
+		            ^
+
+SyntaxError: Unexpected token '.'
+    at wrapSafe (internal/modules/cjs/loader.js:915:16)
+    at Module._compile (internal/modules/cjs/loader.js:963:27)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)
+    at Module.load (internal/modules/cjs/loader.js:863:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:708:14)
+    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:60:12)
+    at internal/main/run_main_module.js:17:47

@@ -1,7 +1,17 @@
 import { calculateMeetingCost } from "./calculate-meeting-cost.js";
 
-const USAGE = "Uso: npm start -- <participantes> <duracao-minutos> <custo-por-hora>";
+const USAGE =
+  "Uso: npm start -- <participantes> <duracao-minutos> <custo-por-hora>";
 
+/**
+ * @typedef {{ ok: true, value: number } | { ok: false, error: string }} ParseResult
+ */
+
+/**
+ * @param {string | undefined} raw
+ * @param {string} label
+ * @returns {ParseResult}
+ */
 function parsePositiveNumber(raw, label) {
   const value = Number(raw);
 
@@ -12,6 +22,10 @@ function parsePositiveNumber(raw, label) {
   return { ok: true, value };
 }
 
+/**
+ * @param {number} amount
+ * @returns {string}
+ */
 function formatCurrency(amount) {
   return new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -22,7 +36,10 @@ function formatCurrency(amount) {
 function main() {
   const [, , participantsRaw, durationRaw, costPerHourRaw] = process.argv;
 
-  const participants = parsePositiveNumber(participantsRaw, "o número de participantes");
+  const participants = parsePositiveNumber(
+    participantsRaw,
+    "o número de participantes",
+  );
   if (!participants.ok) {
     console.error(`Erro: ${participants.error}`);
     process.exitCode = 1;
