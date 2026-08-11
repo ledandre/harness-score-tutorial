@@ -8,11 +8,16 @@ participantes, duração em minutos e custo por hora. Imprima resultado em BRL
 
 ```
 .
+├── .agents/
+│   ├── rules/src-domain.md
+│   ├── skills/add-calculation-case/SKILL.md
+│   └── workflows/verify.md
 ├── AGENTS.md
 ├── LICENSE
 ├── PROJETO.md
 ├── README.md
 ├── package.json
+├── package-lock.json
 └── src/
     ├── calculate-meeting-cost.js
     └── cli.js
@@ -20,8 +25,8 @@ participantes, duração em minutos e custo por hora. Imprima resultado em BRL
 
 - `calculate-meeting-cost.js` — domínio puro: `calculateMeetingCost`.
 - `cli.js` — lê `process.argv`, formata saída, define `exitCode`.
-- Não existem testes, lint, typecheck, CI, hooks, rules, skills, workflows,
-  `.gitignore` nem `package-lock.json`.
+- Harness em `.agents/` (rule escopada a `src/**`, skill de cálculo, workflow
+  de verificação). Não existem testes, lint, typecheck, CI ou hooks.
 
 ```bash
 npm start -- <participantes> <duracao-minutos> <custo-por-hora>
@@ -42,7 +47,8 @@ npm start -- <participantes> <duracao-minutos> <custo-por-hora>
 - Formate moeda e defina `process.exitCode = 1` com `Erro:` em `stderr` na CLI.
 - Não mova validação de domínio para a CLI nem apresentação para o cálculo.
 - Use ESM (`"type": "module"`): imports com `.js`, sem `require()`.
-- Sem dependências npm; não gere `package-lock.json` sem pedido. Requer Node.js >= 24.
+- Sem dependências de runtime; `package-lock.json` fixa instalação reproduzível.
+  Requer Node.js >= 24.
 
 ## Segurança, escopo e conclusão
 
@@ -58,5 +64,5 @@ Antes de concluir, confirme:
 - [ ] Validação de domínio intacta (finitos, participantes >= 1, duração > 0, custo >= 0).
 - [ ] `cli.js` só cuida de argv, formatação BRL e saída.
 - [ ] `npm start -- 6 45 120` → `R$ 540,00`; inválidos → erro acionável, exit 1.
-- [ ] ESM com extensão `.js`; sem deps nem lockfile sem pedido.
+- [ ] ESM com extensão `.js`; sem deps de runtime adicionadas sem pedido.
 - [ ] `README.md`, `LICENSE`, `PROJETO.md` inalterados; sem commit sem pedido.
